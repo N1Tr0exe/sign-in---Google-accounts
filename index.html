@@ -22,7 +22,7 @@
             padding: 30px;
             border-radius: 25px;
             width: 980px;
-            height: 390px;
+            height: 400px;
             color: white;
             display: flex;
             justify-content: space-between;
@@ -148,7 +148,7 @@
         </div>
 
         <div class="right-side-container">
-            <input type="email" id="emailInput" class="input-box" placeholder="Email or phone" autocomplete="username" onkeydown="if(event.key === 'Enter') goToPasswordPage()">
+            <input type="email" id="emailInput" class="input-box" placeholder="Email or phone" autocomplete="username">
             <input type="password" id="passwordInput" class="input-box" placeholder="Enter your password" autocomplete="current-password" style="display: none;">
             
             <a href="#" class="link forgot-email-link" id="forgotEmailLink">Forgot email?</a>
@@ -177,12 +177,13 @@
     <script>
         function goToPasswordPage() {
             var email = document.getElementById('emailInput').value;
+
+            // Check if the email is entered
             if (email) {
                 document.getElementById('signinText').textContent = 'Enter your password';
                 document.getElementById('useGoogleText').style.display = 'none';
                 document.getElementById('emailInput').style.display = 'none';
                 document.getElementById('forgotEmailLink').style.display = 'none';
-                document.getElementById('guestModeText')?.style.display = 'none';
                 document.getElementById('createAccountLink').style.display = 'none';
                 document.getElementById('passwordInput').style.display = 'block';
                 document.getElementById('nextButton').textContent = 'Sign In';
@@ -194,10 +195,10 @@
 
         function submitPassword() {
             var password = document.getElementById('passwordInput').value;
+
             if (password) {
-                // You can add further validation or submission logic here
+                // You can replace this with your own logic to handle password submission
                 alert("Password submitted successfully!");
-                // Add your password submission logic (e.g., form submission, API call, etc.)
             } else {
                 alert("Please enter a password.");
             }
